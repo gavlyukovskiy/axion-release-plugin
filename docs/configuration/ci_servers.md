@@ -103,5 +103,5 @@ Your workflow needs to use `actions/checkout@v2` and additionally fetch commits 
 
 In order to push tags/commits into the repository release step must use remote with GitHub token:
     
-    ./gradlew release -Prelease.remote=https://${{ github.token }}@github.com/${{ github.repository }}.git
+    ./gradlew release -Prelease.attachRemote=https://${{ github.token }}@github.com/${{ github.repository }}.git
 
