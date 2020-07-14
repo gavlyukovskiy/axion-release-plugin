@@ -91,3 +91,17 @@ you need to override branch name with `overriddenBranchName` flag and set it to
         -Prelease.disableChecks \
         -Prelease.pushTagsOnly \
         -Prelease.overriddenBranchName=$(Build.SourceBranch)
+        
+## GitHub Actions
+
+Your workflow needs to use `actions/checkout@v2` and additionally fetch commits and tags:
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: git fetch --prune --unshallow --tags
+
+
+In order to push tags/commits into the repository release step must use remote with GitHub token:
+    
+    ./gradlew release -Prelease.remote=https://${{ github.token }}@github.com/${{ github.repository }}.git
+
